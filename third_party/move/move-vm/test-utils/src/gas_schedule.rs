@@ -151,17 +151,18 @@ impl<'a> GasStatus<'a> {
         if !self.charge {
             return Ok(());
         }
+        Ok(())
 
-        match self.gas_left.checked_sub(amount) {
-            Some(gas_left) => {
-                self.gas_left = gas_left;
-                Ok(())
-            },
-            None => {
-                self.gas_left = InternalGas::new(0);
-                Err(PartialVMError::new(StatusCode::OUT_OF_GAS))
-            },
-        }
+        // match self.gas_left.checked_sub(amount) {
+        //     Some(gas_left) => {
+        //         self.gas_left = gas_left;
+        //         Ok(())
+        //     },
+        //     None => {
+        //         self.gas_left = InternalGas::new(0);
+        //         Err(PartialVMError::new(StatusCode::OUT_OF_GAS))
+        //     },
+        // }
     }
 
     fn charge_instr(&mut self, opcode: Opcodes) -> PartialVMResult<()> {

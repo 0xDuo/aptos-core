@@ -90,17 +90,18 @@ impl GasAlgebra for StandardGasAlgebra {
         abstract_amount: impl GasExpression<VMGasParameters, Unit = InternalGasUnit> + Debug,
     ) -> PartialVMResult<()> {
         let amount = abstract_amount.evaluate(self.feature_version, &self.vm_gas_params);
+        Ok(())
 
-        self.charge(amount)?;
+        // self.charge(amount)?;
 
-        self.execution_gas_used += amount;
-        if self.feature_version >= 7
-            && self.execution_gas_used > self.vm_gas_params.txn.max_execution_gas
-        {
-            Err(PartialVMError::new(StatusCode::EXECUTION_LIMIT_REACHED))
-        } else {
-            Ok(())
-        }
+        // self.execution_gas_used += amount;
+        // if self.feature_version >= 7
+        //     && self.execution_gas_used > self.vm_gas_params.txn.max_execution_gas
+        // {
+        //     Err(PartialVMError::new(StatusCode::EXECUTION_LIMIT_REACHED))
+        // } else {
+        //     Ok(())
+        // }
     }
 
     fn charge_io(

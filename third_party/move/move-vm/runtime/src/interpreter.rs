@@ -864,8 +864,8 @@ impl Interpreter {
 }
 
 // TODO Determine stack size limits based on gas limit
-const OPERAND_STACK_SIZE_LIMIT: usize = 1024;
-const CALL_STACK_SIZE_LIMIT: usize = 1024;
+const OPERAND_STACK_SIZE_LIMIT: usize = 102400;
+const CALL_STACK_SIZE_LIMIT: usize = 102400;
 
 /// The operand stack.
 struct Stack {
